@@ -4,7 +4,7 @@
       "id": "column-1",
       "title": "TO DO",
       "taskIds": [
-        "task-1746532948972",
+        "task-1746697890574",
         "task-1748255483404"
       ]
     },
@@ -12,8 +12,8 @@
       "id": "column-2",
       "title": "IN PROGRESS",
       "taskIds": [
-        "task-1747208161791",
-        "task-1746697890574"
+        "task-1746532948972",
+        "task-1747208161791"
       ]
     },
     "column-3": {
