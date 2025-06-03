@@ -4,16 +4,16 @@
       "id": "column-1",
       "title": "TO DO",
       "taskIds": [
-        "task-1746697890574",
-        "task-1748255483404"
+        "task-1748255483404",
+        "task-1746697890574"
       ]
     },
     "column-2": {
       "id": "column-2",
       "title": "IN PROGRESS",
       "taskIds": [
-        "task-1746532948972",
-        "task-1747208161791"
+        "task-1748255531525",
+        "task-1746532948972"
       ]
     },
     "column-3": {
@@ -21,7 +21,7 @@
       "title": "IN REVIEW",
       "taskIds": [
         "task-1746697844470",
-        "task-1748255531525"
+        "task-1748852268655"
       ]
     },
     "column-4": {
@@ -74,14 +74,6 @@
       "assignee": "rajan",
       "id": "task-1746697938195"
     },
-    "task-1747208161791": {
-      "title": "image",
-      "label": "image capture",
-      "priority": "Low",
-      "dueDate": "2025-02-22",
-      "assignee": "shivang",
-      "id": "task-1747208161791"
-    },
     "task-1748255483404": {
       "title": "warehouse ",
       "label": "warehouse",
@@ -97,6 +89,14 @@
       "dueDate": "2025-02-05",
       "assignee": "dev",
       "id": "task-1748255531525"
+    },
+    "task-1748852268655": {
+      "title": "Flag",
+      "label": "warehouse",
+      "priority": "High",
+      "dueDate": "2025-02-05",
+      "assignee": "yash",
+      "id": "task-1748852268655"
     }
   },
   "columnOrder": [
