@@ -4,24 +4,24 @@
       "id": "column-1",
       "title": "TO DO",
       "taskIds": [
-        "task-1746697890574",
-        "task-1748255483404"
+        "task-1748852268655",
+        "task-1746697890574"
       ]
     },
     "column-2": {
       "id": "column-2",
       "title": "IN PROGRESS",
       "taskIds": [
-        "task-1748255531525",
-        "task-1746532948972"
+        "task-1746532948972",
+        "task-1748255531525"
       ]
     },
     "column-3": {
       "id": "column-3",
       "title": "IN REVIEW",
       "taskIds": [
-        "task-1746697844470",
-        "task-1748852268655"
+        "task-1749196061312",
+        "task-1748255483404"
       ]
     },
     "column-4": {
@@ -49,14 +49,6 @@
       "dueDate": "2026-10-07",
       "assignee": "sahil",
       "id": "task-1746697791043"
-    },
-    "task-1746697844470": {
-      "title": "number-plate-scan",
-      "label": "number-plate-scan",
-      "priority": "High",
-      "dueDate": "2025-08-27",
-      "assignee": "gourav",
-      "id": "task-1746697844470"
     },
     "task-1746697890574": {
       "title": "Dashboard",
@@ -97,6 +89,14 @@
       "dueDate": "2025-02-05",
       "assignee": "yash",
       "id": "task-1748852268655"
+    },
+    "task-1749196061312": {
+      "title": "number-plate",
+      "label": "scan",
+      "priority": "High",
+      "dueDate": "2025-06-28",
+      "assignee": "yash",
+      "id": "task-1749196061312"
     }
   },
   "columnOrder": [
