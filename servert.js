@@ -48,7 +48,7 @@ function startStream(ip, username, password, folder) {
     "-tune", "zerolatency",
     "-b:v", "800k",
     "-bufsize", "800k",
-    "-max_delay", "100000",
+    "-max_delay", "10000",
     "-g", "25",
     "-an",
     "-f", "hls",
@@ -100,9 +100,8 @@ app.delete("/api/cameras/:ip", (req, res) => {
     return res.status(404).json({ error: "Camera not found." });
   }
 
-  // Kill FFmpeg process
   if (processes[ip]) {
-    processes[ip].kill(); // 🛑 Kills streaming
+    processes[ip].kill();
     delete processes[ip];
   }
 
