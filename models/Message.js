@@ -1,10 +1,17 @@
 import mongoose from 'mongoose';
 
 const messageSchema = new mongoose.Schema({
-  sender: { type: String, required: true },
-  receiver: { type: String, required: true },
-  text: { type: String, required: true },
-  time: { type: String, required: true }
+  sender: String,
+  receiver: String,
+  text: String,
+  time: {
+    type: String,
+    default: () =>
+      new Date().toLocaleTimeString('en-IN', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+  },
 }, { timestamps: true });
 
 export default mongoose.model('Message', messageSchema);
