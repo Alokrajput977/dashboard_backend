@@ -1,8 +1,14 @@
-const express = require("express");
-const cors = require("cors");
-const fs = require("fs");
-const { spawn } = require("child_process");
-const path = require("path");
+import express from "express";
+import cors from "cors";
+import fs from "fs";
+import { spawn } from "child_process";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+// For __dirname support in ES Module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 app.use(cors());
@@ -31,7 +37,7 @@ function startStream(ip, username, password, folder) {
     fs.mkdirSync(hlsFolder, { recursive: true });
   }
 
-  // Remove previous segments
+  // Clean previous HLS files
   fs.readdirSync(hlsFolder).forEach((file) => {
     fs.unlinkSync(path.join(hlsFolder, file));
   });
@@ -73,25 +79,32 @@ function startStream(ip, username, password, folder) {
   processes[ip] = ffmpegProcess;
 }
 
+// Add new camera
 app.post("/api/cameras", (req, res) => {
   const { ip, username, password } = req.body;
+
   if (!ip || !username || !password) {
     return res.status(400).json({ error: "ip, username, and password are required." });
   }
+
   if (cameras.find((cam) => cam.ip === ip)) {
     return res.status(400).json({ error: "Camera already added." });
   }
+
   const folder = sanitizeFolderName(ip);
   const newCamera = { ip, username, password, folder };
   cameras.push(newCamera);
   startStream(ip, username, password, folder);
+
   res.json(newCamera);
 });
 
+// Get camera list
 app.get("/api/cameras", (req, res) => {
   res.json(cameras);
 });
 
+// Delete a camera
 app.delete("/api/cameras/:ip", (req, res) => {
   const { ip } = req.params;
 
@@ -105,22 +118,21 @@ app.delete("/api/cameras/:ip", (req, res) => {
     delete processes[ip];
   }
 
-  // Remove stream folder
+  // Delete HLS folder
   const folder = sanitizeFolderName(ip);
   const hlsFolder = path.join(streamsDir, folder);
   if (fs.existsSync(hlsFolder)) {
     fs.rmSync(hlsFolder, { recursive: true, force: true });
   }
 
-  // Remove from memory
   cameras.splice(cameraIndex, 1);
-
   res.json({ message: `Camera ${ip} removed successfully.` });
 });
 
-
+// Serve HLS streams
 app.use("/streams", express.static(streamsDir));
 
+// Combined HLS playlist
 app.get("/hls/combined.m3u8", (req, res) => {
   let combinedPlaylist = "#EXTM3U\n";
   cameras.forEach(({ folder }) => {
@@ -130,6 +142,7 @@ app.get("/hls/combined.m3u8", (req, res) => {
   res.send(combinedPlaylist);
 });
 
+// Stream status
 app.get("/api/status", (req, res) => {
   const status = cameras.map(({ ip }) => ({
     ip,
@@ -138,10 +151,12 @@ app.get("/api/status", (req, res) => {
   res.json(status);
 });
 
+// Get local private IP
 app.get("/api/ip", (req, res) => {
   res.json({ ip: privateIp });
 });
 
+// Start server
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server running at http://${privateIp}:${port}`);
 });
