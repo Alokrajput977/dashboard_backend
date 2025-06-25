@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const taskSchema = new mongoose.Schema({
   id: String,
@@ -18,6 +18,7 @@ const boardSchema = new mongoose.Schema({
   columns: { type: Map, of: columnSchema },
   tasks: { type: Map, of: taskSchema },
   columnOrder: [String]
-});
+}, { timestamps: true });
 
-module.exports = mongoose.model('Board', boardSchema);
+const Board = mongoose.model('Board', boardSchema);
+export default Board;

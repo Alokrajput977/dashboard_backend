@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+// models/User.js
+import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   fullName:   { type: String, required: true },
@@ -13,7 +14,11 @@ const UserSchema = new mongoose.Schema({
     ],
     default: 'employee'
   },
-  department: { type: String, required: true }
-}, { timestamps: true });
+  department: { type: String, required: true },
+  avatarUrl:  { type: String, default: '' },       // optional URL for user avatar
+  lastMessage:{ type: String, default: '' }        // optional last message preview
+}, {
+  timestamps: true
+});
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);
