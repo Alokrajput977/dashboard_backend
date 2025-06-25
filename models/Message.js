@@ -1,9 +1,19 @@
+// models/Message.js
 import mongoose from 'mongoose';
 
 const messageSchema = new mongoose.Schema({
-  sender: String,
-  receiver: String,
-  text: String,
+  sender: {
+    type: String,
+    required: true
+  },
+  receiver: {
+    type: String,
+    required: true
+  },
+  text: {
+    type: String,
+    required: true
+  },
   time: {
     type: String,
     default: () =>
@@ -12,6 +22,13 @@ const messageSchema = new mongoose.Schema({
         minute: '2-digit',
       }),
   },
-}, { timestamps: true });
+  // Track who has “deleted” this message
+  deletedBy: {
+    type: [String],
+    default: []
+  }
+}, {
+  timestamps: true
+});
 
 export default mongoose.model('Message', messageSchema);
