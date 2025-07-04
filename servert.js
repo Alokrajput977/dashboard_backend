@@ -77,6 +77,7 @@ function startStream(ip, username, password, folder) {
   });
 
   processes[ip] = ffmpegProcess;
+  console.log(ip)
 }
 
 // Add new camera
